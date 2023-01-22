@@ -1,5 +1,23 @@
-karma-htmlfile-reporter
+angular-karma-reporter
 =======================
+
+This karam plugin is based on the [npm package](https://www.npmjs.com/package/karma-htmlfile-reporter) by Matthias Schuetz ([GitHub](https://github.com/matthias-schuetz/karma-htmlfile-reporter)).
+
+For now, this plugin doesn't do anything different than the original. You can use the same configuration (see below).
+But that will change in the course of the next adjustments.
+There is also no guarantee that any of the original configurations will still be available in the end.
+
+## What is this plugin good for?
+There is a problem with the Karma htmlfile reporter.
+It has a fixed name for the output file. The value from the outputFile configuration.
+The test results are saved in a file with the configured name.
+In an angular project with multiple sub projects and libraries, the reporter saves after each sub-project.
+At the end there is only one file with the results of the last tested sub-project.
+
+This plugin **will** save one file per sub project.
+Furthermore, options for easy customization of branding, styling and behavior are planned.
+
+---
 
 ## A karma plugin for exporting unit test results as styled HTML file
 
