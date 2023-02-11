@@ -3,7 +3,6 @@
     "^.+\\.(t|j)sx?$": "ts-jest"
   },
   "testRegex": "(/__tests__/.*|(\\.|/)(test|spec))\\.(jsx?|tsx?)$",
-  "modulePathIgnorePatterns": ["angular-dummy"],
   "moduleFileExtensions": [
     "ts",
     "tsx",

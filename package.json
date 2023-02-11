@@ -2,8 +2,8 @@
   "name": "@mh-code/angular-karma-reporter",
   "version": "0.0.0",
   "description": "A karma plugin for exporting unit test results as styled HTML file and statistic data",
-  "main": "./lib/index.js", 
-   "scripts": {
+  "main": "./lib/index.js",
+  "scripts": {
     "test": "jest --config jestconfig.json",
     "coverage": "jest --config jestconfig.json --coverage",
     "build": "tsc",
@@ -14,11 +14,14 @@
     "preversion": "npm run lint",
     "version": "npm run format && git add -A src",
     "postversion": "git push && git push --tags",
-    "pack": " npm pack --pack-destination=./output/"
+    "pack": " npm pack --pack-destination=./output/",
+    "build_n_pack": "tsc && npm pack --pack-destination=./output/",
+    "update": "npm cache clean --force && npx rimraf package-lock.json && npm install"
+
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/MarcHeidingsfelder/angular-karma-reporter.git"
+    "url": "https://github.com/MarcHeidingsfelder/angular-karma-reporter.git"
   },
   "keywords": [
     "karma",
@@ -41,12 +44,12 @@
     "karma": ">=0.10"
   },
   "dependencies": {
-    "xmlbuilder": "^15.1.1"
+    "xmlbuilder": "^15.1.1",
+    "@mh-code/angular-unit-test-state": "^1.0.0"
   },
   "devDependencies": {
     "@types/jest": "^29.0.3",
     "jest": "^29.0.3",
-    "np": "^7.6.2",
     "prettier": "^2.7.1",
     "ts-jest": "^29.0.1",
     "tslint": "^6.1.3",
