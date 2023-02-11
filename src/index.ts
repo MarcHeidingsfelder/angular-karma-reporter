@@ -15,7 +15,8 @@ class AngularReporter implements BaseReporterDecorator {
     baseReporterDecorator(this);
     fixePrototypeFunctions(this);
   }
-  private outputFile = this.config.htmlReporter.outputFile;
+
+  private readonly outputDirectory = this.config.htmlReporter.outputDirectory;
   private readonly pageTitle = this.config.htmlReporter.pageTitle || 'Unit Test Results';
   private readonly subPageTitle = this.config.htmlReporter.subPageTitle || false;
   private readonly groupSuites = this.config.htmlReporter.groupSuites || false;
@@ -208,11 +209,10 @@ class AngularReporter implements BaseReporterDecorator {
     if (htmlToOutput) {
       this.pendingFileWritings++;
 
-      this.config.basePath = path.resolve(this.config.basePath || '.');
-      this.outputFile = this.basePathResolve(this.outputFile);
-      this.helper.normalizeWinPath(this.outputFile);
+      let outputDirectory = this.basePathResolve(this.outputDirectory);
+      const fullPath  = `${outputDirectory}/${AutState.currentProject}.html`;
 
-      this.helper.mkdirIfNotExists(path.dirname(this.outputFile), () => {
+      this.helper.mkdirIfNotExists(outputDirectory, () => {
         if (!htmlToOutput) {
           this.log.warn('Cannot write HTML report\n\t No output!');
           if (!--this.pendingFileWritings) {
@@ -220,11 +220,11 @@ class AngularReporter implements BaseReporterDecorator {
           }
           return;
         }
-        fs.writeFile(this.outputFile, htmlToOutput.end({ pretty: true }), (err) => {
+        fs.writeFile(fullPath, htmlToOutput.end({ pretty: true }), (err) => {
           if (err) {
             this.log.warn('Cannot write HTML report\n\t' + err.message);
           } else {
-            this.log.debug('HTML results written to "%s".', this.outputFile);
+            this.log.debug('HTML results written to "%s".', fullPath);
           }
 
           if (!--this.pendingFileWritings) {
