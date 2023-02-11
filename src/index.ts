@@ -13,6 +13,7 @@ class AngularReporter implements BaseReporterDecorator {
     private readonly formatError,
   ) {
     baseReporterDecorator(this);
+    fixePrototypeFunctions(this);
   }
   private outputFile = this.config.htmlReporter.outputFile;
   private readonly pageTitle = this.config.htmlReporter.pageTitle || 'Unit Test Results';
@@ -326,22 +327,18 @@ class AngularReporter implements BaseReporterDecorator {
 }
 
 const fixePrototypeFunctions = (reporter: AngularReporter) => {
-  for (const member in reporter) {
-    if (member.startsWith('on') && typeof reporter[member] === 'function') {
+  const members = Object.getOwnPropertyNames(AngularReporter.prototype);
+  for (const member of members) {
+    if (member.startsWith('on') && typeof AngularReporter.prototype[member] === 'function') {
       reporter[member] = AngularReporter.prototype[member];
     }
   }
 };
 
-const AngularReporterFactory = (
-  baseReporterDecorator: BaseReporterDecoratorFactory,
-  config,
-  logger,
-  helper,
-  formatError,
-): AngularReporter => {
+// regular function is required for karma runner
+// tslint:disable-next-line: only-arrow-functions
+const AngularReporterFactory = function (baseReporterDecorator: BaseReporterDecoratorFactory, config, logger, helper, formatError,): AngularReporter {
   const reporter = new AngularReporter(baseReporterDecorator, config, logger, helper, formatError);
-  fixePrototypeFunctions(reporter);
   return reporter;
 };
 
