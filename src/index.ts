@@ -1,8 +1,7 @@
 import * as path from 'path';
 import * as fs from 'fs';
-import * as builder from 'xmlbuilder';
+import { XMLElement, create as createXml } from 'xmlbuilder';
 import { BaseReporterDecorator, BaseReporterDecoratorFactory } from './types/baseReporterDecorator';
-import { XMLElement } from 'xmlbuilder';
 
 class AngularReporter implements BaseReporterDecorator {
   constructor(
@@ -115,7 +114,7 @@ class AngularReporter implements BaseReporterDecorator {
 
   private initializeHtmlForBrowser(): void {
     if (!this.htmlCreated) {
-      this.html = builder.create('html', { headless: true });
+      this.html = createXml('html', { headless: true });
 
       this.html.dtd();
 
