@@ -2,6 +2,7 @@ import * as path from 'path';
 import * as fs from 'fs';
 import { XMLElement, create as createXml } from 'xmlbuilder';
 import { BaseReporterDecorator, BaseReporterDecoratorFactory } from './types/baseReporterDecorator';
+import { AutResult, AutState } from '@mh-code/angular-unit-test-state';
 
 class AngularReporter implements BaseReporterDecorator {
   constructor(
@@ -149,6 +150,16 @@ class AngularReporter implements BaseReporterDecorator {
   public onBrowserComplete(browser): void {
     const suite = this.suites[browser.id];
     const result = browser.lastResult;
+
+    const state: AutResult = {
+      total: result.total,
+      success: result.success,
+      skipped: result.skipped,
+      failed: result.failed,
+      netTime: result.netTime,
+    };
+
+    AutState.addResults(AutState.currentProject, state);
 
     if (suite && suite['results']) {
       suite['results'].txt(result.total + ' tests / ');
