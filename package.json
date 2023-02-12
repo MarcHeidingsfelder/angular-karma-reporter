@@ -1,6 +1,6 @@
 {
   "name": "@mh-code/angular-karma-reporter",
-  "version": "0.0.0",
+  "version": "0.1.0",
   "description": "A karma plugin for exporting unit test results as styled HTML file and statistic data",
   "main": "./lib/index.js",
   "scripts": {
@@ -17,7 +17,6 @@
     "pack": " npm pack --pack-destination=./output/",
     "build_n_pack": "tsc && npm pack --pack-destination=./output/",
     "update": "npm cache clean --force && npx rimraf package-lock.json && npm install"
-
   },
   "repository": {
     "type": "git",

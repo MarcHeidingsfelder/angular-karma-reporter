@@ -34,7 +34,7 @@ class AngularReporter implements BaseReporterDecorator {
   private lastSuiteName: string = '';
   private pendingFileWritings = 0;
   // tslint:disable-next-line no-empty  -- will be fixed with further refactoring
-  private fileWritingFinished = ()=>{};
+  private fileWritingFinished = () => {};
   private allMessages: string[] = [];
   private allErrors: string[] = [];
 
@@ -213,7 +213,7 @@ class AngularReporter implements BaseReporterDecorator {
       this.pendingFileWritings++;
 
       const outputDirectory = this.basePathResolve(this.outputDirectory);
-      const fullPath  = `${outputDirectory}/${AutState.currentProject}.html`;
+      const fullPath = `${outputDirectory}/${AutState.currentProject}.html`;
 
       this.helper.mkdirIfNotExists(outputDirectory, () => {
         if (!htmlToOutput) {
@@ -350,7 +350,13 @@ const fixePrototypeFunctions = (reporter: AngularReporter) => {
 
 // regular function is required for karma runner
 // tslint:disable-next-line: only-arrow-functions
-const AngularReporterFactory = function (baseReporterDecorator: BaseReporterDecoratorFactory, config, logger, helper, formatError,): AngularReporter {
+const AngularReporterFactory = function (
+  baseReporterDecorator: BaseReporterDecoratorFactory,
+  config,
+  logger,
+  helper,
+  formatError,
+): AngularReporter {
   const reporter = new AngularReporter(baseReporterDecorator, config, logger, helper, formatError);
   return reporter;
 };
