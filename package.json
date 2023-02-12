@@ -1,6 +1,6 @@
 {
   "name": "@mh-code/angular-karma-reporter",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "A karma plugin for exporting unit test results as styled HTML file and statistic data",
   "main": "./lib/index.js",
   "scripts": {
