@@ -1,3 +1,5 @@
+// tslint:disable no-string-literal -- will be fixed when the needed types are written.
+
 import * as path from 'path';
 import * as fs from 'fs';
 import { XMLElement, create as createXml } from 'xmlbuilder';
@@ -31,7 +33,8 @@ class AngularReporter implements BaseReporterDecorator {
   private htmlCreated = false;
   private lastSuiteName: string = '';
   private pendingFileWritings = 0;
-  private fileWritingFinished = function () {};
+  // tslint:disable-next-line no-empty  -- will be fixed with further refactoring
+  private fileWritingFinished = ()=>{};
   private allMessages: string[] = [];
   private allErrors: string[] = [];
 
@@ -209,7 +212,7 @@ class AngularReporter implements BaseReporterDecorator {
     if (htmlToOutput) {
       this.pendingFileWritings++;
 
-      let outputDirectory = this.basePathResolve(this.outputDirectory);
+      const outputDirectory = this.basePathResolve(this.outputDirectory);
       const fullPath  = `${outputDirectory}/${AutState.currentProject}.html`;
 
       this.helper.mkdirIfNotExists(outputDirectory, () => {
