@@ -19,7 +19,7 @@ The result files are named after the according project / sub-project.
 // karma.conf.js
 module.exports = function(config) {
   config.set({
-    reporters: ['progress', 'angular'],
+    reporters: ['progress', 'aut-reporter'],
 
     htmlReporter: {
       outputDirectory: './test-results',
@@ -37,7 +37,7 @@ module.exports = function(config) {
 ```
 
 ## Test result statistics
-This plugin write information, like count of test and how many succeeded, to the [AutState](https://www.npmjs.com/package/@mh-code/angular-unit-test-state).
+This plugin write information, like count of executed tests and how many succeeded, to the [AutState](https://www.npmjs.com/package/@mh-code/angular-unit-test-state).
 The [AutRunner](https://www.npmjs.com/package/@mh-code/angular-unit-test-runner) consumes these information to a test summary over all projects.
 
 

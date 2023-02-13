@@ -365,5 +365,5 @@ AngularReporterFactory.$inject = ['baseReporterDecorator', 'config', 'logger', '
 
 // PUBLISH DI MODULE
 module.exports = {
-  'reporter:angular': ['type', AngularReporterFactory],
+  'reporter:aut-runner': ['type', AngularReporterFactory],
 };
