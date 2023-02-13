@@ -3,7 +3,7 @@ import * as plugin from './../index';
 
 describe('reporter factory', () => {
   const getFactory = () => {
-    return module.default['reporter:angular'][1];
+    return module.default['reporter:aut-reporter'][1];
   };
 
   let baseReporterDecoratorFactoryMock: Partial<BaseReporterDecoratorFactory>;
